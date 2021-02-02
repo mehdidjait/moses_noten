@@ -26,7 +26,7 @@ def initial_configuration_group(df, group):
     # assign group Number to students
     while True:
         
-        Student = str(input('Name: '))
+        Student = str(input('Name: ')).strip()
         if sum(df_moses.Name == Student) < 1 and Student != str(0):
             print('the student', Student, ' was not found')
             print('\nPLEASE enter the name from the HTML source code of the moses web page!')
@@ -115,7 +115,7 @@ def initial_configuration_email(df, df_students):
         if df_moses.Email[i] == '' and df_moses.Gruppe[i] != '':
             print('The Email of the following student was not found: ', df_moses.Name[i])
             print('\nPLEASE provide the Email adress from the ISIS web page')
-            Email = str(input("Email from ISIS: "))
+            Email = str(input("Email from ISIS: ")).strip()
             df_moses.loc[i, 'Email'] = Email
             print(df_moses.Name[i], '--> Email: ', df_moses.Email[i], '\n')
     
@@ -150,7 +150,7 @@ def final_configuration_email(df, HA):
             else:
                 print('Email not found: ', df_moses.Name[i])
                 print('PLEASE provide the Email adress from the ISIS web page')
-                Email = str(input('Email from ISIS: '))
+                Email = str(input('Email from ISIS: ')).strip()
                 print('\n', df_moses.Name[i], '--> old Email: ', df_moses.Email[i])
                 df_moses.loc[i, 'Email'] = Email
                 print('', df_moses.Name[i], '--> new Email: ', df_moses.Email[i], '\n')

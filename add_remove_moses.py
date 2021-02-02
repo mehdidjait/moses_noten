@@ -32,7 +32,7 @@ def add_remove(df):
                 
             
             print('\nPLEASE provide the Email adress from the ISIS web page (VERY IMPORTANT!)')
-            email = str(input('Email: '))
+            email = str(input('Email: ')).strip()
             
             try:                
                 group = int(input('Gruppe: '))
