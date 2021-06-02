@@ -98,8 +98,8 @@ def enter_grades(df, df_HA, homework, group):
     """       
     #############################################################################
     # for ANA2 tutors!
-    # 1. comment lines 78 .. 83 by adding """ in line 77 and 84
-    # 2. uncomment lines 92 .. 97 by deleting the """ from line 91 and 98
+    # 1. COMMENT OUT lines 78 .. 83 by adding """ in line 77 and 84
+    # 2. UNCOMMENT lines 92 .. 97 by deleting the """ from line 91 and 98
     #############################################################################
     
     
