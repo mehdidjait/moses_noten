@@ -72,13 +72,35 @@ def enter_grades(df, df_HA, homework, group):
         if(df_moses_final.Gesamt[i] == 0):
             df_moses_final.loc[i, 'Gesamt'] = ''           
     
-    #Print HTML code for Moses
+    #Print Javascript code for Moses
+    
+    
     for i in df_moses_final.index:
         if(df_moses_final.Gruppe[i] != ''):
             print("document.querySelector('input[title=\"", df_moses_final.Name[i], 
                   " : Hausaufgaben - ", homework, 
                   "\"]').value = '", df_moses_final.Gesamt[i], 
                   "'", sep = '')
+            
+            
+    #############################################################################
+    # for ANA2 tutors!
+    # 1. comment lines 78 .. 83 by adding """ in line 77 and 84
+    # 2. uncomment lines 92 .. 97 by deleting the """ from line 91 and 98
+    #############################################################################
+    """
+     for i in df_moses_final.index:
+        if(df_moses_final.Gruppe[i] != ''):
+            print("document.querySelector('input[title=\"", df_moses_final.Name[i], 
+                  " : Hausaufgaben - HA ", number_homework, 
+                  "\"]').value = '", df_moses_final.Gesamt[i], 
+                  "'", sep = '')
+    """       
+    #############################################################################
+    # for ANA2 tutors!
+    # 1. comment lines 78 .. 83 by adding """ in line 77 and 84
+    # 2. uncomment lines 92 .. 97 by deleting the """ from line 91 and 98
+    #############################################################################
     
     
     # save        
