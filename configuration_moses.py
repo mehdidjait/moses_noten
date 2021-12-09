@@ -1,207 +1,220 @@
-import pandas as pd
-import numpy as np
+import os
+import pandas as pd 
 
 
-def initial_configuration_group(df, group):
+def initial_import_eintragungsliste():
+    """
+    Returns
+    -------
+    df_moses : TYPE
+        DESCRIPTION.
+
+    """
     
-    # copy the dataframe 
-    df_moses = df.copy()
     
-    # prepare the dataframe
-    if 'Name' not in df_moses.columns:
-        df_moses.rename(columns = {df_moses.columns[0]: "Matrikelnummer"}, inplace = True)
-        df_moses.rename(columns = {df_moses.columns[1]: "Name"}, inplace = True) 
-        df_moses.drop(columns = df_moses.columns[2], inplace = True)  # delete the third column
-        
-    # get the students with the same name
-    duplicate = df_moses[df_moses.duplicated('Name')]
-    duplicate_list = []
-    for i in duplicate.Name:
-        duplicate_list.append(i)
+    df_moses = pd.read_csv("eintragungsliste.csv")
+    print('eintragungsliste.csv was successfully imported')
+    df_moses.rename(columns={df_moses.columns[0]: "Matrikelnummer"}, inplace=True)
+    df_moses.rename(columns={df_moses.columns[1]: "Name"}, inplace=True) 
+    df_moses.drop(columns=df_moses.columns[2], inplace=True)  # delete the third column
     
     # add the group column  
     if 'Gruppe' not in df_moses.columns:
-        df_moses['Gruppe'] = "" 
+        df_moses['Gruppe'] = ""
+    
+    return df_moses
+    
+
+def configuration_groups():
+    """
+    Returns
+    -------
+    df_moses : TYPE
+        DESCRIPTION.
+
+    """
+    
+    
+    if os.path.isfile('./df_moses_initial.csv'):
+        prompt = input('df_moses_initial.csv was found!'
+                       '\n-->An intial configuration of the groups was already performed.'
+                       '\nProceed with the same file (y/[n])? ').strip()
         
-    # assign group Number to students
-    while True:
+        if prompt == 'y':       
+            df_moses = pd.read_csv('df_moses_initial.csv')
+            print('df_moses_initial.csv was successfully imported')
+            df_moses.Gruppe.fillna('', inplace=True)
         
-        Student = str(input('Name: ')).strip()
-        if sum(df_moses.Name == Student) < 1 and Student != str(0):
-            print('the student', Student, ' was not found')
-            print('\nPLEASE enter the name from the HTML source code of the moses web page!')
-            continue
-        
-        try:
-            Gruppe = int(input('Gruppe: '))
-        except ValueError:
-            print("invalid input for Gruppe")
-            continue
-        
-        # break the loop
-        if Gruppe == 0 and Student == str(0):
-            print('\n END \n')
+        else:
+            df_moses = initial_import_eintragungsliste()
+            
+    else:
+        df_moses = initial_import_eintragungsliste()
+    
+    while True:        
+        print('__________________________________________________________________________\n\n'
+              '                 :Assign groups to students:\n\n\n'
+              'Every student can be chosen by the index shown left\n'
+              '  -> example: 12 --> Nachname_12, Vorname_12\n'
+              '              23 --> Nachname_23, Vorname_23\n'
+              '              58 --> Nachname_58, Vorname_58\n\n'
+              'Mutiple students can be chosen at once to form a group using + as seperator\n'
+              '  -> example: 12+23+58\n\nFor groups with one student: give a single index as input\n'
+              '  -> example: 58\n\nType quit to exit the configuration'
+              '\n\n__________________________________________________________________________') 
+            
+        prompt = input('Continue (y/[n])? ').strip()
+        if prompt == 'y':
             break
         
-        if Student in duplicate_list:
-           print('\nmore than one student has the following name -->', Student, 
-                 '\n\nplease provide the Matrikelnummer')
-           
-           matrikelnummer = int(input('Matrikelnummer: '))
-           
-           for j in df_moses.index:
-               if df_moses.Matrikelnummer[j] == matrikelnummer:
-                  df_moses.loc[j, 'Gruppe'] = Gruppe
-                  print('\n', df_moses.Name[j], matrikelnummer, 
-                        '--> Gruppe: ', 
-                        df_moses.Gruppe[j], '\n')
-           continue
-           
-        # search the database for the provided name
-        for i in df_moses.index:
-            if df_moses.Name[i] == Student:
-               df_moses.loc[i, 'Gruppe'] = Gruppe
-               print('\n', df_moses.Name[i], '--> Gruppe: ', 
-                     df_moses.Gruppe[i], '\n')
+        continue
+    
+    for index, name in zip(df_moses.index, df_moses.Name):
+        print(f'{index} --> {name}')               
+
+    while True:
+        print('__________________________________________________________________________\n')
+        students_with_group = (df_moses.Gruppe != '').sum()
+        print(f'Total numbers of students with a group --> {students_with_group}\n\n'
+              'Type show to show the groups with associated students\n'
+              'Type quit to exit the configuration')
+
+        index_input = str(input('Select: ')).strip()        
+        if '+' in index_input:
+            selected_combination = list(filter(None, index_input.split('+')))
+            if any(not index.isdecimal() or int(index) not in df_moses.index for index in selected_combination):
+                print('\nInvalid combination! Please use the index shown '
+                      'to the left of the student')
+                    
+                continue
             
-    # 2) Verification 
-    # check if the number of students with a group & the total number of students is correct
-    # init the total number of students with a group
-    s1 = 0 
-    
-    j = 0
-    while j < len(group):
-        # total number of students in a given group
-        s0 = 0  
+            if len(selected_combination) != len(set(selected_combination)):
+                print('\nA student was selected more than once!')
+                continue 
+            
+            selected_students = [df_moses.loc[int(index), 'Name'] for index in selected_combination]
+            print(f'\nselected_students --> {selected_students}'
+                  '\n\nType back to go back to students selection')
+            group_input = str(input('Gruppe: ')).strip()
+            if group_input == 'back':
+                continue
+            
+            if not group_input:
+                print('WARNING! No group was selected')
+                continue
+            
+            for index in selected_combination:
+                df_moses.loc[int(index), 'Gruppe'] = group_input
+            
+            print(f'\n{selected_students} --> Gruppe: {group_input}'
+                  '\n\nthe change will be saved in the file df_moses_initial.csv') 
+                
+            df_moses.to_csv("./df_moses_initial.csv", index=False) 
+            continue
         
-        for i in df_moses.index:
-            if df_moses.Gruppe[i] == group[j]:
-                s0 += 1 
-                s1 += 1
-        print('group:', group[j], ' --> ', s0, 'students')
-        j += 1
+        elif index_input.isdecimal():
+            if int(index_input) not in df_moses.index:
+                print('\nindex not found!\n')
+                continue 
+            
+            print(f'\nselected student --> {df_moses.iloc[int(index_input), 1]}'
+                  '\nType back to go back to students selection')
+                
+            group_input = str(input('Gruppe: ')).strip()
+            if group_input == 'back':
+                continue
+
+            if not group_input:
+                print('\nWARNING! No group was selected')
+                continue
+           
+            df_moses.loc[int(index_input), 'Gruppe'] = group_input
+            print(f'\n{df_moses.iloc[int(index_input), 1]} --> Gruppe: {group_input}'
+                  '\n\nthe change will be saved in the file df_moses_initial.csv')
+                
+            continue
+                
+        elif index_input == 'quit':
+            prompt = input('Quit the configuration. Proceed (y/[n])? ').strip()
+            if prompt == 'y':
+                print('Configuration is finished\nAll the changes will be saved '
+                      'in the file df_moses_initial.csv')
+                    
+                df_moses.to_csv("./df_moses_initial.csv", index=False) 
+                return df_moses
+                
+            continue
         
-    print('\nthe total number of students with a group:', s1)
-    
-    # save 
-    df_moses.to_pickle("./initial_conf_group.pkl")
-     
-    return df_moses
+        elif index_input == 'show':
+            for group in list(set(df_moses['Gruppe'])): 
+                if group:
+                    names_group = df_moses.loc[df_moses['Gruppe'] == group, 'Name'].values
+                    print(f'Gruppe {group} --> {names_group}')
+                    continue
+
+        else:
+            print("\ninvalid input for index!\n")
+            continue
 
 
-def initial_configuration_email(df, df_students):
+def configuration_emails(df_moses):  
+    """
+    Parameters
+    ----------
+    df_moses : TYPE
+        DESCRIPTION.
+
+    Returns
+    -------
+    df_moses : TYPE
+        DESCRIPTION.
+
+    """
     
-    # copy the dataframe 
-    df_moses = df.copy()
     
-    # 1) preparing the dataframes
-    df_students2 = df_students.Name + ", " + df_students.Vorname  # to match the df_moses 
-    df_students2 = df_students2.to_frame()  
-    df_students2.columns = ['Name']         
-    df_students2['Email'] = df_students.iloc[:, [4]]  # get the Email adresses
+    df_isis_raw = pd.read_csv("Teilnehmerliste.csv")
+    print('Teilnehmerliste.csv was successfully imported')
+    df_isis = pd.DataFrame(columns=['Name', 'Email'])
+    df_isis['Name'] = df_isis_raw.Nachname + ', ' + df_isis_raw.Vorname
+    df_isis['Email'] = df_isis_raw['E-Mail-Adresse']
     
-    # add the Email column 
     if 'Email' not in df_moses.columns:
         df_moses['Email'] = ""   
     
-    # 2) getting the Email adresses from df_students (only for students with a group)
-    for i in df_students2.index:
-        for j in df_moses.index:
-            if df_students2.Name[i] == df_moses.Name[j] and df_moses.Gruppe[j] != '':
-                df_moses.loc[j, 'Email'] = df_students2.Email[i]
-                        
-    # 3) manually input the Email adresses that cannot be found! 
-    for i in df_moses.index:
-        if df_moses.Email[i] == '' and df_moses.Gruppe[i] != '':
-            print('The Email of the following student was not found: ', df_moses.Name[i])
-            print('\nPLEASE provide the Email adress from the ISIS web page')
-            Email = str(input("Email from ISIS: ")).strip()
-            df_moses.loc[i, 'Email'] = Email
-            print(df_moses.Name[i], '--> Email: ', df_moses.Email[i], '\n')
-    
-    # save 
-    #df_moses.to_pickle("./Initial_Conf_Email.pkl")
-    
-    return df_moses
-
-
-def final_configuration_email(df, HA):
-    
-    # copy the dataframes 
-    df_moses = df.copy()
-    df_HA = HA.copy()
-    
-    # Using HA0 --> reason: 2435 Versuche (the majority of the Email Adresses will be contained)
-    df_HA = df_HA.drop([len(df_HA) - 1])  # delete the last row containing the Gesamtdurchschnitt
-    
-    # correct Email --> The same as the Email from ISIS (important to extract the online Hausaufgaben)
-    Y = []  # list to contain the correct Emails
-    
-    for i in df_moses.index:
-        for j in df_HA.index:
-            if(df_moses.Gruppe[i] != ''):  # check only for students with a group
-                if(df_moses.Email[i] == df_HA.iloc[j, 2]):
-                    Y.append(df_moses.Name[i])
-
-    for i in df_moses.index:
-        if df_moses.Gruppe[i] != '':  # check only for students with a group
-            if df_moses.Name[i] in Y:
-                i += 1  # the Email is already correct 
+    for ind, name_moses in enumerate(df_moses.Name):
+        # check just for students with a group
+        if df_moses.loc[df_moses['Name'] == name_moses, 'Gruppe'].values[0]:        
+            found_email = df_isis[df_isis['Name'] == name_moses]['Email']
+            
+            if not found_email.empty:
+                df_moses.loc[ind, 'Email'] = found_email.values[0]
+                # print(f'{name_moses} --> email: {found_email.values[0]}')
+                
             else:
-                print('Email not found: ', df_moses.Name[i])
-                print('PLEASE provide the Email adress from the ISIS web page')
-                Email = str(input('Email from ISIS: ')).strip()
-                print('\n', df_moses.Name[i], '--> old Email: ', df_moses.Email[i])
-                df_moses.loc[i, 'Email'] = Email
-                print('', df_moses.Name[i], '--> new Email: ', df_moses.Email[i], '\n')
+                print('__________________________________________________________________________\n'
+                      f'\nPLEASE provide the Email address of [{name_moses}] from the Teilnehmer/innen ISIS '
+                      'web page (VERY IMPORTANT!)')
+                    
+                email_input = str(input("Email from ISIS Teilnehmer/innen: ")).strip()
+                df_moses.loc[ind, 'Email'] = email_input
+                print(f'\n{name_moses} --> email: {email_input}'
+                      '\n__________________________________________________________________________')
+                
+    print('\nThe table with student, group, email will be saved to df_moses_final.csv\n')
+    df_moses.to_pickle("./df_moses_final.pkl")  # Pandas Dataframe that can be exported to python 
+    df_moses.to_csv("./df_moses_final.csv", index=False)
     
-    # save 
-    print('\nA table with student, group, email will be saved to df_moses_final.csv\n')
-    df_moses.to_pickle("./df_moses_final.pkl")  # Pandas Dataframe
-    df_moses.to_csv("./df_moses_final.csv", index=False)  # CSV 
-    
-    return df_moses
+    return df_moses            
 
 
 if __name__ == "__main__":
+    if not os.path.isfile('./eintragungsliste.csv'):                    
+        print('\nThe file eintragungsliste.csv was not found in the current directory!\n')
+        raise NotImplementedError 
     
-    prompt = input('Are you sure you defined the groups correctly below in the code (y/[n])? ')
-    if prompt != 'y':
+    df_moses = configuration_groups()
+    if not os.path.isfile('./Teilnehmerliste.csv'):
+        print('\nThe file Teilnehmerliste.csv was not found in the current directory!\n')
         raise NotImplementedError
-    
-    #############################################################################
-    # Define the groups
-    #############################################################################
-    
-    group = np.array((1,  3,  4,  6, 
-                      10, 12, 13, 14,
-                      15, 16, 17, 18, 
-                      19, 20, 21, 22, 
-                      25))
-    
-    #############################################################################
-    # Define the groups
-    #############################################################################
-    
-    df_students = pd.read_csv("students_list.csv")
-    df_eintragungsliste = pd.read_csv("eintragungsliste.csv")
-    # Using HA0 --> reason: 2435 Versuche (the majority of the Email Adresses will be contained)
-    df_HA0 = pd.read_csv("HA0.csv")
-    print('\nEnter 0 for Name & 0 for Gruppe when completed')
-    
-    df_moses_initial = initial_configuration_group(df_eintragungsliste, group)
-    
-    # for calling initial_configuration_group again (in case of an error in the first initial configuration)
-    while True:  
-        entry = input('Is the total number of students with a group correct (y/[n])? ')
-        if entry == 'y':
-            break
-        df_moses_initial = initial_configuration_group(df_moses_initial, group)
-    
-    print('\nAlways enter the email adress FROM THE ISIS WEBSITE!\n')
-    
-    df_moses_initial = initial_configuration_email(df_moses_initial, df_students)
-    df_moses_final = final_configuration_email(df_moses_initial, df_HA0)
-    
- 
-     
+            
+    df_moses_final = configuration_emails(df_moses)  
