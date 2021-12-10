@@ -5,13 +5,11 @@
 
 Step 1:
 <br/>
-<br/>
 If you never used Python -> (VERY RECOMMENDED!) watch this video to install spyder (0:00 -> 2:22 min) https://youtu.be/dZfuAx5cW3w  
 <br/>
 <br/>
 <br/>
 Step 2: Two csv files are NECESSARY before running the code
-<br/>
 <br/>
 2.1: sing in into your MOSES account -> Teilleistungen -> Teilleistungverwaltung -> Teilleistungen Ergebnisse der Veranstaltung bearbeiten -> Hausaufgaben ->
 select a Homework that has not been graded -> Alle studierende aus meinen Tutorien -> (scroll down) -> Gespeicherte Ergebnisse als CSV Datei -> name the file
@@ -28,8 +26,7 @@ are correctly named eintragungsliste.csv (the file downloaded from moses) and Te
 <br/>
 <br/>
 <br/>
-Step 3 Assign students to groups***
-<br/>
+Step 3 Assign students to groups
 <br/>
 open configuration_moses.py with your preferred IDE (spyder for example, as in the linked video) -> run the code (the green arrow top left in spyder) -> ***please 
 read CAREFULLY all the messages in the console (bottom right in spyder), you will be guided through the configuration***
@@ -37,7 +34,6 @@ read CAREFULLY all the messages in the console (bottom right in spyder), you wil
 <br/>
 <br/>
 Step 4 Final step is inserting grades: 
-<br/>
 <br/>
 4.1: for homework without an online part -> directy go to step 4.3
 <br/>
