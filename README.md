@@ -7,7 +7,7 @@
 If you never used Python -> (VERY RECOMMENDED!) watch this video to install spyder (0:00 -> 2:22 min) https://youtu.be/dZfuAx5cW3w  
 
 <br/>
-__Step 2 two csv files are NECESSARY before running the code:__<br/>
+***Step 2 two csv files are NECESSARY before running the code***<br/>
 <br/>
 2.1: sing in into your MOSES account -> Teilleistungen -> Teilleistungverwaltung > [Teilleistungen Ergebnisse der Veranstaltung bearbeiten] -> Hausaufgaben -> select a Homework that has not been graded > Alle studierende aus meinen Tutorien > (scroll down) > Gespeicherte Ergebnisse als CSV Datei -> name the file eintragungsliste.csv
     
@@ -16,7 +16,7 @@ __Step 2 two csv files are NECESSARY before running the code:__<br/>
 2.3: put the files in the same directory as the python files (add_remove_moses.py, configuration_moses.py, grades_moses.py) and ***PLEASE MAKE SURE that the files are correctly named eintragungsliste.csv (the file downloaded from moses) and Teilnehmerliste.csv (the file downloaded from ISIS)*** 
 
 <br/>
- **Step 3 Assign students to groups:** <br/>
+ ***Step 3 Assign students to groups:***
 <br/>
 open configuration_moses.py with your preferred IDE (spyder for example, as in the linked video) -> run the code (the green arrow top left in spyder) -> ***please read CAREFULLY all the messages in the console (bottom right in spyder), you will be guided through the configuration***
 
