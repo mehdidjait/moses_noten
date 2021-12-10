@@ -4,7 +4,7 @@ import pandas as pd
 
 
 def enter_grades(df_moses_final, homework, df_online_ha, online):
-    """,
+    """
     Parameters
     ----------
     df_moses_final : TYPE
@@ -42,12 +42,19 @@ def enter_grades(df_moses_final, homework, df_online_ha, online):
     
     groups_without_grade = list(set(df_moses_hausaufgabe['Gruppe']))
     groups_without_grade.remove('')
+    groups = groups_without_grade.copy()
     while True:
-        print('__________________________________________________________________________'
-              '\nType quit to exit'
-              '\nType show to show the groups still without a grade')
+        print('__________________________________________________________________________\n'
+              'Type quit to exit\n'
+              'Type show to show the groups with the associated grade\n'
+              'Type showng to show the groups still without a grade\n')
             
         group_input = str(input('Gruppe: ')).strip()
+        
+        if not group_input:
+            print('No group was selected!')
+            continue
+
         if group_input == 'quit':
             prompt = input('Quit enter grades. Proceed (y/[n])? ').strip()
             if prompt == 'y':
@@ -56,6 +63,13 @@ def enter_grades(df_moses_final, homework, df_online_ha, online):
             continue
         
         if group_input == 'show':
+            for group in list(set(groups) - set(groups_without_grade)):
+                grade = df_moses_hausaufgabe.loc[df_moses_hausaufgabe['Gruppe'] == group, 'Schriftlich'].values[0]
+                print(f'Gruppe: {group} -> Note: {grade}')
+            
+            continue
+
+        if group_input == 'showng':
             print(f'groups without grade -> {groups_without_grade}')
             continue
         
@@ -72,7 +86,7 @@ def enter_grades(df_moses_final, homework, df_online_ha, online):
                   'The old grade will be overwritten!')
             
         names_emails_selected = df_moses_hausaufgabe.loc[df_moses_hausaufgabe['Gruppe'] == group_input, ['Name', 'Email']]
-        print(f'\nGruppe {group_input} --> {names_emails_selected.Name.values}')        
+        print(f'\nGruppe: {group_input} --> {names_emails_selected.Name.values}')        
         try:
             note_input = float(input('Note: '))
             
@@ -104,20 +118,22 @@ def enter_grades(df_moses_final, homework, df_online_ha, online):
     for ind, name in enumerate(df_moses_hausaufgabe['Name']):
         if df_moses_hausaufgabe.loc[df_moses_hausaufgabe['Name'] == name, 'Gruppe'].values[0]: 
             print("document.querySelector('input[title=\"", name, 
-                  " : Hausaufgaben - ", homework, 
-                  "\"]').value = '", df_moses_hausaufgabe.loc[ind, 'Gesamt'], 
-                  "'", sep='')
+                  " : Hausaufgaben - ", homework,  "\"]').value = '",
+                  df_moses_hausaufgabe.loc[ind, 'Gesamt'], "'", sep='')
     
     print('\n__________________________________________________________________________'
           f'\nFinished.\n\nTo upload the grades:\n'
           '1. Copy all the code starting with document.querySelector\n'
           f'2. Open the moses page for entering the grades of the Hausaufgabe {homework}\n'
           '3. right click anywhere in the page --> inspect --> console\n'
-          '4. Paste the code into the console and press ENTER\n'
+          '4. Paste the code into the console\n'
+          '5. Press ENTER (the first time you will be asked for permission. Read the'
+          ' message to give the necessary permission)\n'
           '__________________________________________________________________________\n\n'
           f'All the grades will be saved in the file --> {homework}_graded.csv '
-          f'inside the directory --> {homework}_graded')
-    
+          f'inside the directory --> {homework}_graded\n'
+           '__________________________________________________________________________\n')
+ 
     if not os.path.isdir(f'./{homework}_graded/'):
         os.mkdir(f'./{homework}_graded/')
    
