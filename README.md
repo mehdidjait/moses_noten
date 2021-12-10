@@ -3,7 +3,9 @@
 
 ###### Step by Step guide to use the script:<br/>
 
-Step 1:<br/>
+Step 1:
+<br/>
+<br/>
 If you never used Python -> (VERY RECOMMENDED!) watch this video to install spyder (0:00 -> 2:22 min) https://youtu.be/dZfuAx5cW3w  
 <br/>
 <br/>
