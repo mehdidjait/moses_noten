@@ -7,7 +7,7 @@
 If you never used Python -> (VERY RECOMMENDED!) watch this video to install spyder (0:00 -> 2:22 min) https://youtu.be/dZfuAx5cW3w  
 
 <br/>
- **Step 2 two csv files are NECESSARY before running the code:** <br/>
+__Step 2 two csv files are NECESSARY before running the code:__<br/>
 <br/>
 2.1: sing in into your MOSES account -> Teilleistungen -> Teilleistungverwaltung > [Teilleistungen Ergebnisse der Veranstaltung bearbeiten] -> Hausaufgaben -> select a Homework that has not been graded > Alle studierende aus meinen Tutorien > (scroll down) > Gespeicherte Ergebnisse als CSV Datei -> name the file eintragungsliste.csv
     
