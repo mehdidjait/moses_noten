@@ -8,9 +8,7 @@ If you never used Python -> (VERY RECOMMENDED!) watch this video to install spyd
 <br/>
 <br/>
 <br/>
-<br/>
-Step 2 two csv files are NECESSARY before running the code
-<br/>
+Step 2: Two csv files are NECESSARY before running the code
 <br/>
 <br/>
 2.1: sing in into your MOSES account -> Teilleistungen -> Teilleistungverwaltung -> Teilleistungen Ergebnisse der Veranstaltung bearbeiten -> Hausaufgaben ->
@@ -28,9 +26,7 @@ are correctly named eintragungsliste.csv (the file downloaded from moses) and Te
 <br/>
 <br/>
 <br/>
-<br/>
 Step 3 Assign students to groups***
-<br/>
 <br/>
 <br/>
 open configuration_moses.py with your preferred IDE (spyder for example, as in the linked video) -> run the code (the green arrow top left in spyder) -> ***please 
@@ -38,9 +34,7 @@ read CAREFULLY all the messages in the console (bottom right in spyder), you wil
 <br/>
 <br/>
 <br/>
-<br/>
 Step 4 Final step is inserting grades: 
-<br/>
 <br/>
 <br/>
 4.1: for homework without an online part -> directy go to step 4.3
@@ -53,7 +47,6 @@ HA7.csv for week 7, HA10.csv for week 10 -> put the file in the same directory a
 <br/>
 4.3: open grades_moses.py with your preferred IDE (spyder for example, as in the linked video) -> run the code (the green arrow top left in spyder) -> pleaseread 
 CAREFULLY all the messages in the console (bottom right in spyder), you will be guided through the grading.  
-<br/>
 <br/>
 <br/>
 <br/>
