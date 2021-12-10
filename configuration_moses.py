@@ -75,9 +75,10 @@ def configuration_groups():
     while True:
         print('__________________________________________________________________________\n')
         students_with_group = (df_moses.Gruppe != '').sum()
-        print(f'Total numbers of students with a group --> {students_with_group}\n\n'
-              'Type show to show the groups with associated students\n'
-              'Type quit to exit the configuration')
+        print('Type quit to exit the configuration\n'
+              f'Type show to show the groups with associated students\n'
+              'Type showng to show students without a group\n\n'
+              f'Total numbers of students with a group --> {students_with_group}\n')
 
         index_input = str(input('Select: ')).strip()        
         if '+' in index_input:
@@ -112,7 +113,7 @@ def configuration_groups():
             df_moses.to_csv("./df_moses_initial.csv", index=False) 
             continue
         
-        elif index_input.isdecimal():
+        if index_input.isdecimal():
             if int(index_input) not in df_moses.index:
                 print('\nindex not found!\n')
                 continue 
@@ -134,7 +135,7 @@ def configuration_groups():
                 
             continue
                 
-        elif index_input == 'quit':
+        if index_input == 'quit':
             prompt = input('Quit the configuration. Proceed (y/[n])? ').strip()
             if prompt == 'y':
                 print('Configuration is finished\nAll the changes will be saved '
@@ -145,15 +146,23 @@ def configuration_groups():
                 
             continue
         
-        elif index_input == 'show':
+        if index_input == 'show':
             for group in list(set(df_moses['Gruppe'])): 
                 if group:
                     names_group = df_moses.loc[df_moses['Gruppe'] == group, 'Name'].values
                     print(f'Gruppe {group} --> {names_group}')
-                    continue
-
+            
+            continue
+        
+        if index_input == 'showng':
+             for index, name in zip(df_moses.index, df_moses.Name):
+                 if not df_moses.loc[df_moses['Name'] == name, 'Gruppe'].values[0]:
+                    print(f'{index} --> {name}')
+            
+             continue
+        
         else:
-            print("\ninvalid input for index!\n")
+            print("\ninvalid input for select!")
             continue
 
 
