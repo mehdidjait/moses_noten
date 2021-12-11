@@ -5,24 +5,25 @@
 
 Step 1:
 <br/>
-If you never used Python -> (VERY RECOMMENDED!) watch this video to install spyder (0:00 -> 2:22 min) https://youtu.be/dZfuAx5cW3w  
+If you never used Python -> (VERY RECOMMENDED!) watch this video to install spyder -> https://youtu.be/dZfuAx5cW3w  
 <br/>
 <br/>
 <br/>
 Step 2: Two csv files are NECESSARY before running the code:
 <br/>
-2.1: sing in into your MOSES account -> Teilleistungen -> Teilleistungverwaltung -> Teilleistungen Ergebnisse der Veranstaltung bearbeiten -> Hausaufgaben ->
+2.1: sign in into your MOSES account -> Teilleistungen -> Teilleistungverwaltung -> Teilleistungen Ergebnisse der Veranstaltung bearbeiten -> Hausaufgaben ->
 select a Homework that has not been graded -> Alle studierende aus meinen Tutorien -> (scroll down) -> Gespeicherte Ergebnisse als CSV Datei -> name the file
 eintragungsliste.csv
 <br/>
 <br/>
-2.2: sing in into your ISIS account -> Go to the page of the math subject (Modul) you are tutoring -> On the left column, click on Teilnehmer/innen -> 
+2.2: sign in into your ISIS account -> Go to the page of the math subject (Modul) you are tutoring -> On the left column, click on Teilnehmer/innen -> 
 (scrolldown) -> Click on 'Alle {number} Nutzer/innen Auswählen' -> Next to 'Für ausgewählte Nutzer/innen …' select: 'Komma separierte Werte (.csv)' -> name the 
 file Teilnehmerliste.csv 
 <br/>
 <br/>
-2.3: put the files in the same directory as the python files (add_remove_moses.py, configuration_moses.py, grades_moses.py) and ***PLEASE MAKE SURE that the files 
-are correctly named eintragungsliste.csv (the file downloaded from moses) and Teilnehmerliste.csv (the file downloaded from ISIS)*** 
+2.3: put the files in the same directory as the python files (add_remove_moses.py, configuration_moses.py, grades_moses.py)
+***PLEASE MAKE SURE that the files are correctly named eintragungsliste.csv (the file downloaded from moses) and Teilnehmerliste.csv (the file downloaded from
+ISIS)*** 
 <br/>
 <br/>
 <br/>
@@ -43,8 +44,8 @@ online homework -> Tabellendaten herunterladen als Komma separierte Werte (.csv)
 HA7.csv for week 7, HA10.csv for week 10 -> put the file in the same directory as the other files   
 <br/>
 <br/>
-4.3: open grades_moses.py with your preferred IDE (spyder for example, as in the linked video) -> run the code (the green arrow top left in spyder) -> pleaseread 
-CAREFULLY all the messages in the console (bottom right in spyder), you will be guided through the grading.  
+4.3: open grades_moses.py with your preferred IDE (spyder for example, as in the linked video) -> run the code (the green arrow top left in spyder) -> ***please 
+read CAREFULLY all the messages in the console (bottom right in spyder), you will be guided through the grading.***  
 <br/>
 <br/>
 <br/>
