@@ -22,9 +22,9 @@ def add_remove(df):
             continue
         
         if option == 1:
-            print('PLEASE enter the name from the HTML source code of the moses web page (VERY IMPORTANT!)')
+            print('PLEASE enter the name from the the MOSES web page (VERY IMPORTANT!)')
             student = str(input('Name: ')).strip()
-            prompt = input('Are you sure you entered the name from the HTML source code (y/[n])? ')
+            prompt = input('Are you sure you entered the name from the MOSES web page (y/[n])? ')
             
             if prompt != 'y':
                 print('\nPlease provide the name again\n')
@@ -34,11 +34,9 @@ def add_remove(df):
             print('\nPLEASE provide the Email adress from the ISIS web page (VERY IMPORTANT!)')
             email = str(input('Email: ')).strip()
             
-            try:                
-                group = int(input('Gruppe: '))
-            except ValueError:
-                print("invalid input for Gruppe")
-                continue
+                       
+            group = str(input('Gruppe: ')).strip()
+
             try:
                 Matrikelnummer = int(input('Matrikelnummer: '))
             except ValueError:
@@ -62,15 +60,10 @@ def add_remove(df):
             if sum(df_moses.Name == student) < 1:
                 print('the student', student, ' was not found')
                 continue
-    
-            try:                
-                group = int(input('Gruppe: '))
-            except ValueError:
-                print("invalid input for Gruppe")
-                continue
-            
-            if not ((df_moses_final['Name'] == student) & 
-                    (df_moses_final['Gruppe'] == group)).any():
+
+            group = str(input('Gruppe: ')).strip()
+            if not ((df_moses['Name'] == student) & 
+                    (df_moses['Gruppe'] == group)).any():
                 
                     print('the student', student,
                           'does not belong to group', 
@@ -91,12 +84,7 @@ def add_remove(df):
                 print('the student', student, ' was not found')
                 continue
             
-            try:
-                group = int(input('Neue Gruppe: '))
-            except ValueError:
-                print("invalid input for Gruppe")
-                continue
-            
+            group = str(input('Neue Gruppe: ')).strip()
             for i in df_moses.index:
                 if df_moses.Name[i] == student:
                   print('\nthe following student will be transferred -->', student, 
@@ -114,15 +102,11 @@ def add_remove(df):
             student = str(input('Name: ')).strip()
             if sum(df_moses.Name == student) < 1:
                 print('the student', student, ' was not found')
-                continue
-            try:                
-                group = int(input('Gruppe: '))
-            except ValueError:
-                print("invalid input for Gruppe")
-                continue
-            
-            if not ((df_moses_final['Name'] == student) & 
-                    (df_moses_final['Gruppe'] == group)).any():
+                continue 
+
+            group = str(input('Gruppe: ')).strip()
+            if not ((df_moses['Name'] == student) & 
+                    (df_moses['Gruppe'] == group)).any():
                 
                     print('the student', student,
                           'does not belong to group', 
