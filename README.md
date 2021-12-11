@@ -48,4 +48,4 @@ read CAREFULLY all the messages in the console (bottom right in spyder), you wil
 <br/>
 <br/>
 <br/>
-If you wish to add, remove a student from a group or modify the email address -> run add_remove.py and read the messages in the console.
+If you wish to add, remove a student from a group or modify the email address -> run add_remove_moses.py and read the messages in the console.
