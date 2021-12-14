@@ -3,7 +3,7 @@ import os
 import pandas as pd
 
 
-def enter_grades(df_moses_final, homework, df_online_ha, online):
+def enter_grades(df_moses_final, homework_number, df_online_ha, online):
     """
     Parameters
     ----------
@@ -13,12 +13,10 @@ def enter_grades(df_moses_final, homework, df_online_ha, online):
         DESCRIPTION.
     homework : TYPE
         DESCRIPTION.
-
     Returns
     -------
     df_moses_hausaufgabe : TYPE
         DESCRIPTION.
-
     """   
     
     
@@ -41,7 +39,9 @@ def enter_grades(df_moses_final, homework, df_online_ha, online):
         df_moses_hausaufgabe['Online'] = ''
     
     groups_without_grade = list(set(df_moses_hausaufgabe['Gruppe']))
-    groups_without_grade.remove('')
+    if '' in groups_without_grade:
+        groups_without_grade.remove('')
+    
     groups = groups_without_grade.copy()
     while True:
         print('__________________________________________________________________________\n'
@@ -50,7 +50,6 @@ def enter_grades(df_moses_final, homework, df_online_ha, online):
               'Type showng to show the groups still without a grade\n')
             
         group_input = str(input('Gruppe: ')).strip()
-        
         if not group_input:
             print('No group was selected!')
             continue
@@ -105,20 +104,68 @@ def enter_grades(df_moses_final, homework, df_online_ha, online):
                 
                 else:
                     # the online note of the student was not found! 
-                    df_moses_hausaufgabe.loc[df_moses_hausaufgabe['Email'] == email, 'Online'] = 0.0           
-                    print(f'{names_emails_selected.Name.values[ind]} --> online Note: 0 (NOT FOUND -> '
-                          'PLEASE VERIFY MANUALLY in ISIS!)')
-            
+                    df_moses_hausaufgabe.loc[df_moses_hausaufgabe['Email'] == email, 'Online'] = 0.0        
+                    name_student = names_emails_selected['Name'].values[ind]
+                    email_student = names_emails_selected['Email'].values[ind]
+                    print(f'\n\nName: {name_student}\nEmail: {email_student}\n--> online Note: 0 -> !!! NOT FOUND -> '
+                          f'PLEASE VERIFY THE GRADE AND EMAIL MANUALLY in HA{homework_number}.csv !!!\n'
+                          '--> Update the email with add_remove_moses.py later if necessary!)\n')
+                    
+                    if 'tu-berlin' not in email_student:
+                        print(f'!!! WARNING !!!\n The email "{email_student}" is not an official TU Berlin address '
+                              f'and may need a change!!!\n Look carefully for "{name_student}" in HA{homework_number}.csv \n')
+                        
+                        while True:
+                            prompt = str(input(f'\nWas the student "{name_student}" found (y/[n])? ')).strip()
+                            if prompt == 'y':
+                                print(f'{name_student}, Old Email: {email_student}')
+                                new_email = str(input('New Email: ')).strip()
+                                df_moses_final.loc[df_moses_final['Email'] == email_student, 'Email'] = new_email
+                                online_note = df_online_hausaufgabe.loc[df_online_hausaufgabe['E-Mail-Adresse'] == new_email, 'Online'].values
+                                df_moses_hausaufgabe.loc[df_moses_hausaufgabe['Email'] == email, 'Online'] = online_note[0]
+                                print(f'{names_emails_selected.Name.values[ind]} --> online Note: {online_note[0]}')
+                                df_moses_final.to_pickle("./df_moses_final.pkl")  # Pandas Dataframe that can be exported to python 
+                                df_moses_final.to_csv("./df_moses_final.csv", index=False)
+                                break
+                            
+                            if prompt == 'n':
+                                break
+                            
+                            print('Invalid input!')
+                            continue
+                
     # gesamt = online + schriftlich 
     columns = ['Gesamt', 'Schriftlich', 'Online']
     df_moses_hausaufgabe[columns] = df_moses_hausaufgabe[columns].apply(pd.to_numeric, errors='coerce', axis=1).fillna(0)
     df_moses_hausaufgabe['Gesamt'] = df_moses_hausaufgabe['Schriftlich'] + df_moses_hausaufgabe['Online']
     df_moses_hausaufgabe['Gruppe'].fillna('', inplace=True)
+    while True:
+        print('\n\nThe grades belong to which subject?\n\n'
+              '1 --> Analysis I und Lineare Algebra\n2 --> Analysis II\n')
+        
+        try:
+            subject_input = int(input('Subject: '))
+            if subject_input == 1:
+                homework = f'HA{homework_number}'
+                break
+
+            if subject_input == 2:
+                homework = f'HA {homework_number}'
+                break
+        
+            if subject_input not in [1, 2]:
+                print('invalid input for subject!')
+                continue
+
+        except ValueError:
+            print('invalid input for subject!')
+            continue
+        
     print('__________________________________________________________________________\n')
     for ind, name in enumerate(df_moses_hausaufgabe['Name']):
         if df_moses_hausaufgabe.loc[df_moses_hausaufgabe['Name'] == name, 'Gruppe'].values[0]: 
             print("document.querySelector('input[title=\"", name, 
-                  " : Hausaufgaben - ", homework,  "\"]').value = '",
+                  f' : Hausaufgaben - {homework}', "\"]').value = '",
                   df_moses_hausaufgabe.loc[ind, 'Gesamt'], "'", sep='')
     
     print('\n__________________________________________________________________________'
@@ -130,15 +177,15 @@ def enter_grades(df_moses_final, homework, df_online_ha, online):
           '5. Press ENTER (the first time you will be asked for permission. Read the'
           ' message to give the necessary permission)\n'
           '__________________________________________________________________________\n\n'
-          f'All the grades will be saved in the file --> {homework}_graded.csv '
-          f'inside the directory --> {homework}_graded\n'
-           '__________________________________________________________________________\n')
+          f'All the grades will be saved in the file --> HA{homework_number}_graded.csv '
+          f'inside the directory --> HA{homework_number}_graded\n'
+          '__________________________________________________________________________\n')
  
-    if not os.path.isdir(f'./{homework}_graded/'):
-        os.mkdir(f'./{homework}_graded/')
+    if not os.path.isdir(f'./HA{homework_number}_graded/'):
+        os.mkdir(f'./HA{homework_number}_graded/')
    
-    df_moses_hausaufgabe.to_pickle(f'./{homework}_graded/{homework}_graded.pkl')  # Pandas Dataframe
-    df_moses_hausaufgabe.to_csv(f'./{homework}_graded/{homework}_graded.csv', index=False)  # CSV 
+    df_moses_hausaufgabe.to_pickle(f'./HA{homework_number}_graded/HA{homework_number}_graded.pkl')  # Pandas Dataframe
+    df_moses_hausaufgabe.to_csv(f'./HA{homework_number}_graded/HA{homework_number}_graded.csv', index=False)  # CSV 
     
     return df_moses_hausaufgabe
 
@@ -152,22 +199,28 @@ if __name__ == "__main__":
     while True:   
         try:    
             input_number_homework = int(input('Enter homework number: '))
-            homework = f'HA{input_number_homework}'
-            prompt = str(input(f'Include online grades from {homework}.csv (y/[n])? ')).strip()
-            if prompt == 'y':
-                try:
-                    df_online_ha = pd.read_csv(f'./{homework}.csv')
-                    print(f'\nThe online homework file {homework}.csv was successfully imported')
-                    df_hausaufgabe_grades = enter_grades(df_moses_final, homework, df_online_ha, online=True)
-                    break
-               
-                except FileNotFoundError:
-                    print(f'\nTHE ONLINE HOMEWORK FILE {homework}.csv WAS NOT FOUND!')
-                    continue
-                
-            df_hausaufgabe_grades = enter_grades(df_moses_final, homework, None, online=False)
-            break
-        
+            homework = 'HA' + str(input_number_homework)
+             
         except ValueError:
             print('\nInvalid input for homework number!')
             continue
+    
+        prompt = str(input(f'Include online grades from {homework}.csv (y/[n])? ')).strip()
+        if prompt == 'y':
+            if not os.path.isfile(f'./{homework}.csv'):
+                print(f'\nThe file {homework}.csv was not found in the current directory!\n')
+                continue
+                        
+            df_online_ha = pd.read_csv(f'./{homework}.csv')
+            print(f'\nThe online homework file {homework}.csv was successfully imported')
+            df_hausaufgabe_grades = enter_grades(df_moses_final, input_number_homework, df_online_ha, online=True)
+            break
+                    
+        if prompt == 'n':
+            df_hausaufgabe_grades = enter_grades(df_moses_final, input_number_homework, None, online=False)
+            break
+        
+        else:
+            print('invalid input!')
+            continue
+        
