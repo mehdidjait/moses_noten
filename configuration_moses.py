@@ -70,7 +70,8 @@ def configuration_groups():
         continue
     
     for index, name in zip(df_moses.index, df_moses.Name):
-        print(f'{index} --> {name}')               
+        if df_moses['Gruppe'][index] == '':
+            print(f'{index} --> {name}')               
 
     while True:
         print('__________________________________________________________________________\n')
@@ -155,11 +156,11 @@ def configuration_groups():
             continue
         
         if index_input == 'showng':
-             for index, name in zip(df_moses.index, df_moses.Name):
-                 if not df_moses.loc[df_moses['Name'] == name, 'Gruppe'].values[0]:
+            for index, name in zip(df_moses.index, df_moses.Name):
+                if not df_moses.loc[df_moses['Name'] == name, 'Gruppe'].values[0]:
                     print(f'{index} --> {name}')
             
-             continue
+            continue
         
         else:
             print("\ninvalid input for select!")
