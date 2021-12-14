@@ -39,7 +39,7 @@ Step 4: Final step is inserting grades:
 <br/>
 <br/>
 4.2: if there exists an online part of the homework: sing in into your ISIS account -> Go to the page of the math subject (Modul) you are tutoring -> go to the 
-online homework -> Tabellendaten herunterladen als Komma separierte Werte (.csv) -> name the file as follows HAweeknumber.csv (VERY IMPORTANT!) -> example: 
+online homework -> Tabellendaten herunterladen als Komma separierte Werte (.csv) -> name the file as follows ***HAweeknumber.csv (VERY IMPORTANT!)*** -> example: 
 HA7.csv for week 7, HA10.csv for week 10 -> put the file in the same directory as the other files   
 <br/>
 <br/>
