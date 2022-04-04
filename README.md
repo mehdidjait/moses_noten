@@ -1,5 +1,5 @@
 # moses_noten
-## Python script for an automatic entry of students homework grades for math tutors at the TU Berlin. (PLEASE CAREFULLY READ THE GUIDE)<br/>
+## Python CLI for an automatic entry of students homework grades for math tutors at the TU Berlin. (PLEASE CAREFULLY READ THE GUIDE)<br/>
 ###### If you have any feedback, wish to see a feature implemented or any question, PLEASE send me an email to mehdidjait@gmail.com I would be more than happy to respond! <br/><br/> Step by Step guide to use the script:
 
 Step 1:
