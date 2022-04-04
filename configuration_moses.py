@@ -6,8 +6,8 @@ def initial_import_eintragungsliste():
     """
     Returns
     -------
-    df_moses : TYPE
-        DESCRIPTION.
+    df_moses : Pandas DataFrame
+        dataframe containing all students from your tutorial (the ones registred in moses).
 
     """
     
@@ -29,8 +29,8 @@ def configuration_groups():
     """
     Returns
     -------
-    df_moses : TYPE
-        DESCRIPTION.
+    df_moses : Pandas DataFrame
+        dataframe containing all students from your tutorial + the defined groups.
 
     """
     
@@ -171,13 +171,14 @@ def configuration_emails(df_moses):
     """
     Parameters
     ----------
-    df_moses : TYPE
-        DESCRIPTION.
+    df_moses : Pandas DataFrame
+        the returned DataFrame from the configuration_groups() function
 
     Returns
     -------
-    df_moses : TYPE
-        DESCRIPTION.
+    df_moses : Pandas DataFrame
+       dataframe containing all students from your tutorial + the defined groups + the ISIS-Email address. 
+       The ISIS-Email address will be used to extract the online homework grades from ISIS. 
 
     """
     
