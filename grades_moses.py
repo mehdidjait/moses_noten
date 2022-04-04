@@ -7,16 +7,18 @@ def enter_grades(df_moses_final, homework_number, df_online_ha, online):
     """
     Parameters
     ----------
-    df_moses_final : TYPE
-        DESCRIPTION.
-    df_online_ha : TYPE
-        DESCRIPTION.
-    homework : TYPE
-        DESCRIPTION.
+    df_moses_final : Pandas DataFrame
+        dataframe containing the configured groups + emails.
+    homework_number: int
+        the number of the homework
+    df_online_ha : Pandas DataFrame
+        dataframe containg the online grades from the csv file downloaded from ISIS
+    online: bool
+        flag to indicate if the homeworks have an online part on ISIS 
     Returns
     -------
-    df_moses_hausaufgabe : TYPE
-        DESCRIPTION.
+    df_moses_hausaufgabe : Pandas DataFrame
+        dataframe containg the students + the homework grade + online homework grade + total
     """   
     
     
