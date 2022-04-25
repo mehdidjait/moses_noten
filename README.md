@@ -26,6 +26,7 @@ ISIS)***
 <br/>
 <br/>
 <br/>
+
 ## Step 3: Assign students to groups:
 <br/>
 open configuration_moses.py with your preferred IDE (spyder for example, as in the linked video) -> run the code (the green arrow top left in spyder) -> ***please 
