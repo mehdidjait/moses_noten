@@ -22,6 +22,7 @@ Go to the page of the math subject (Modul) you are tutoring -> On the left colum
 <br/>
 <br/>
 3. put the files in the same directory as the python files (add_remove_moses.py, configuration_moses.py, grades_moses.py)
+
 ***PLEASE MAKE SURE that the files are correctly named eintragungsliste.csv (the file downloaded from moses) and Teilnehmerliste.csv (the file downloaded from ISIS)*** 
 <br/>
 <br/>
