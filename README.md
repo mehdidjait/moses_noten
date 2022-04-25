@@ -29,7 +29,8 @@ Go to the page of the math subject (Modul) you are tutoring -> On the left colum
 
 ## Step 3: Assign students to groups:
 <br/>
-open configuration_moses.py with your preferred IDE (spyder for example, as in the linked video) -> run the code (the green arrow top left in spyder) -> **please read CAREFULLY all the messages in the console (bottom right in spyder), you will be guided through the configuration**
+open configuration_moses.py with your preferred IDE (spyder for example, as in the linked video) -> run the code (the green arrow top left in spyder) -> 
+**please read CAREFULLY all the messages in the console (bottom right in spyder), you will be guided through the configuration**
 <br/>
 <br/>
 <br/>
@@ -42,7 +43,9 @@ open configuration_moses.py with your preferred IDE (spyder for example, as in t
 2. if there exists an online part of the homework: sing in into your ISIS account -> Go to the page of the math subject (Modul) you are tutoring -> go to the online homework -> Tabellendaten herunterladen als Komma separierte Werte (.csv) -> name the file as follows **HAweeknumber.csv (VERY IMPORTANT!)** -> example: HA7.csv for week 7, HA10.csv for week 10 -> put the file in the same directory as the other files   
 <br/>
 <br/>
-3. open grades_moses.py with your preferred IDE (spyder for example, as in the linked video) -> run the code (the green arrow top left in spyder) -> **please read CAREFULLY all the messages in the console (bottom right in spyder), you will be guided through the grading.**  
+3. open grades_moses.py with your preferred IDE (spyder for example, as in the linked video) -> run the code (the green arrow top left in spyder) -> 
+**please read CAREFULLY all the messages in the console (bottom right in spyder), you will be guided through the grading.**  
+
 **check this link to see how to access the console of your browser: https://balsamiq.com/support/faqs/browserconsole/#apple-safari**
 
 <br/>
