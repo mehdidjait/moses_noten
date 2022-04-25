@@ -8,6 +8,7 @@ If you never used Python -> (VERY RECOMMENDED!) watch this video to install spyd
 <br/>
 <br/>
 <br/>
+
 ## Step 2: Two csv files are NECESSARY before running the code:
 <br/>
 2.1: sign in into your MOSES account -> Teilleistungen -> Teilleistungverwaltung -> Teilleistungen Ergebnisse der Veranstaltung bearbeiten -> Hausaufgaben ->
@@ -34,6 +35,7 @@ read CAREFULLY all the messages in the console (bottom right in spyder), you wil
 <br/>
 <br/>
 <br/>
+
 ## Step 4: Final step is inserting grades: 
 <br/>
 4.1: for homework without an online part -> directy go to step 4.3
