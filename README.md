@@ -11,19 +11,17 @@ If you never used Python -> (VERY RECOMMENDED!) watch this video to install spyd
 
 ## Step 2: Two csv files are NECESSARY before running the code:
 <br/>
-2.1: sign in into your MOSES account -> Teilleistungen -> Teilleistungverwaltung -> Teilleistungen Ergebnisse der Veranstaltung bearbeiten -> Hausaufgaben ->
-select a Homework that has not been graded -> Alle studierende aus meinen Tutorien -> (scroll down) -> Gespeicherte Ergebnisse als CSV Datei -> name the file
-eintragungsliste.csv
+1. sign in into your MOSES account:
+<br/>
+Teilleistungen -> Teilleistungverwaltung -> Teilleistungen Ergebnisse der Veranstaltung bearbeiten -> Hausaufgaben -> select a Homework that has not been graded -> Alle studierende aus meinen Tutorien -> (scroll down) -> Gespeicherte Ergebnisse als CSV Datei -> name the file eintragungsliste.csv
 <br/>
 <br/>
-2.2: sign in into your ISIS account -> Go to the page of the math subject (Modul) you are tutoring -> On the left column, click on Teilnehmer/innen -> 
-(scrolldown) -> Click on 'Alle {number} Nutzer/innen Auswählen' -> Next to 'Für ausgewählte Nutzer/innen …' select: 'Komma separierte Werte (.csv)' -> name the 
-file Teilnehmerliste.csv 
+2. sign in into your ISIS account 
+Go to the page of the math subject (Modul) you are tutoring -> On the left column, click on Teilnehmer/innen -> (scrolldown) -> Click on 'Alle {number} Nutzer/innen Auswählen' -> Next to 'Für ausgewählte Nutzer/innen …' select: 'Komma separierte Werte (.csv)' -> name the file Teilnehmerliste.csv 
 <br/>
 <br/>
-2.3: put the files in the same directory as the python files (add_remove_moses.py, configuration_moses.py, grades_moses.py)
-***PLEASE MAKE SURE that the files are correctly named eintragungsliste.csv (the file downloaded from moses) and Teilnehmerliste.csv (the file downloaded from
-ISIS)*** 
+3. put the files in the same directory as the python files (add_remove_moses.py, configuration_moses.py, grades_moses.py)
+***PLEASE MAKE SURE that the files are correctly named eintragungsliste.csv (the file downloaded from moses) and Teilnehmerliste.csv (the file downloaded from ISIS)*** 
 <br/>
 <br/>
 <br/>
