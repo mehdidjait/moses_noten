@@ -2,22 +2,13 @@
 ## Python CLI for an automatic entry of students homework grades for math tutors at the TU Berlin. (PLEASE CAREFULLY READ THE GUIDE)<br/>
 ###### If you have any feedback, wish to see a feature implemented or any question, PLEASE send me an email to mehdidjait@gmail.com I would be more than happy to respond! <br/><br/> Step by Step guide to use the script:
 
-## Step 1:
-<br/>
-If you never used Python -> (VERY RECOMMENDED!) watch this video to install spyder -> https://youtu.be/dZfuAx5cW3w  
-<br/>
-<br/>
-<br/>
-
+## Step 1
+* If you never used Python -> (VERY RECOMMENDED!) watch this video to install spyder -> https://youtu.be/dZfuAx5cW3w  
+* 
 ## Step 2: Two csv files are NECESSARY before running the code:
-<br/>
-1. sign in into your MOSES account:
-<br/>
+* sign in into your MOSES account:
 Teilleistungen -> Teilleistungverwaltung -> Teilleistungen Ergebnisse der Veranstaltung bearbeiten -> Hausaufgaben -> select a Homework that has not been graded -> Alle studierende aus meinen Tutorien -> (scroll down) -> Gespeicherte Ergebnisse als CSV Datei -> name the file eintragungsliste.csv
-<br/>
-<br/>
-2. sign in into your ISIS account:
-<br/>
+* sign in into your ISIS account:
 Go to the page of the math subject (Modul) you are tutoring -> On the left column, click on Teilnehmer/innen -> (scrolldown) -> Click on 'Alle {number} Nutzer/innen Auswählen' -> Next to 'Für ausgewählte Nutzer/innen …' select: 'Komma separierte Werte (.csv)' -> name the file Teilnehmerliste.csv 
 <br/>
 <br/>
