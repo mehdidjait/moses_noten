@@ -30,8 +30,10 @@ Go to the page of the math subject (Modul) you are tutoring -> On the left colum
 
 ## Step 3: Assign students to groups:
 <br/>
-open configuration_moses.py with your preferred IDE (spyder for example, as in the linked video) -> run the code (the green arrow top left in spyder) -> ***please 
-read CAREFULLY all the messages in the console (bottom right in spyder), you will be guided through the configuration***
+open configuration_moses.py with your preferred IDE (spyder for example, as in the linked video) -> run the code (the green arrow top left in spyder) -> 
+
+***please read CAREFULLY all the messages in the console (bottom right in spyder), you will be guided through the configuration***
+
 <br/>
 <br/>
 <br/>
