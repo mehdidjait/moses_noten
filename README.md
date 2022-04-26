@@ -10,7 +10,7 @@ Teilleistungen -> Teilleistungverwaltung -> Teilleistungen Ergebnisse der Verans
 * sign in into your ISIS account:
 Go to the page of the math subject (Modul) you are tutoring -> On the left column, click on Teilnehmer/innen -> (scrolldown) -> Click on 'Alle {number} Nutzer/innen Auswählen' -> Next to 'Für ausgewählte Nutzer/innen …' select: 'Komma separierte Werte (.csv)' -> name the file Teilnehmerliste.csv 
 * put the files in the same directory as the python files (add_remove_moses.py, configuration_moses.py, grades_moses.py)
-**PLEASE MAKE SURE that the files are correctly named eintragungsliste.csv (the file downloaded from moses) and Teilnehmerliste.csv (the file downloaded from ISIS)**
+* **PLEASE MAKE SURE that the files are correctly named eintragungsliste.csv (the file downloaded from moses) and Teilnehmerliste.csv (the file downloaded from ISIS)**
 ## Step 3 Assigning students to groups
 * open configuration_moses.py with your preferred IDE (spyder for example, as in the linked video) -> run the code (the green arrow top left in spyder) -> 
 **please read CAREFULLY all the messages in the console (bottom right in spyder), you will be guided through the configuration**
