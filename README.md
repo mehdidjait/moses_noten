@@ -19,6 +19,5 @@ Go to the page of the math subject (Modul) you are tutoring -> On the left colum
 * if there exists an online part of the homework: sing in into your ISIS account -> Go to the page of the math subject (Modul) you are tutoring -> go to the online homework -> Tabellendaten herunterladen als Komma separierte Werte (.csv) -> name the file as follows  __HAweeknumber.csv (VERY IMPORTANT!)__ -> example: HA7.csv for week 7, HA10.csv for week 10 -> put the file in the same directory as the other files   
 * open grades_moses.py with your preferred IDE (spyder for example, as in the linked video) -> run the code (the green arrow top left in spyder) -> **please read CAREFULLY all the messages in the console (bottom right in spyder), you will be guided through the grading.** 
 **check this link to see how to access the console of your browser: https://balsamiq.com/support/faqs/browserconsole/#apple-safari**
-<br/>
 ## Step 5 Modifying groups
-If you wish to add, remove a student from a group or modify the email address -> run add_remove_moses.py and follow the messages in the console.
+* If you wish to add, remove a student from a group or modify the email address -> run add_remove_moses.py and follow the messages in the console.
