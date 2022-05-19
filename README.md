@@ -2,9 +2,9 @@
 ## Python CLI for an automatic entry of students homework grades for math tutors at the TU Berlin. (PLEASE CAREFULLY READ THE GUIDE)<br/>
 ###### If you have any feedback, wish to see a feature implemented or any question, PLEASE send me an email to mehdidjait@gmail.com I would be more than happy to respond! <br/><br/> Step by Step guide:
 
-## Step 1
+## Step 1 Using Python
 * If you never used Python -> (VERY RECOMMENDED!) watch this video to install spyder -> https://youtu.be/dZfuAx5cW3w  
-## Step 2
+## Step 2 Downloading the files containing the students
 * sign in into your MOSES account:
 Teilleistungen -> Teilleistungverwaltung -> Teilleistungen Ergebnisse der Veranstaltung bearbeiten -> Hausaufgaben -> select a Homework that has not been graded -> Alle studierende aus meinen Tutorien -> (scroll down) -> Gespeicherte Ergebnisse als CSV Datei -> name the file eintragungsliste.csv
 * sign in into your ISIS account:
@@ -20,4 +20,5 @@ Go to the page of the math subject (Modul) you are tutoring -> On the left colum
 * open grades_moses.py with your preferred IDE (spyder for example, as in the linked video) -> run the code (the green arrow top left in spyder) -> **please read CAREFULLY all the messages in the console (bottom right in spyder), you will be guided through the grading.** 
 **check this link to see how to access the console of your browser: https://balsamiq.com/support/faqs/browserconsole/#apple-safari**
 <br/>
-If you wish to add, remove a student from a group or modify the email address -> run add_remove_moses.py and read the messages in the console.
+## Step 5 Modifying groups
+If you wish to add, remove a student from a group or modify the email address -> run add_remove_moses.py and follow the messages in the console.
